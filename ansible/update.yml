@@ -1,6 +1,6 @@
 ---
 - name: Update
-  hosts: laboratory
+  hosts: jenkins
   become: true
 
   tasks:
@@ -15,3 +15,8 @@
   - name: Clean up apt cache
     apt:
       autoclean: yes
+
+  - name: Install Ansible
+    apt:
+      name: ansible
+      state: present
