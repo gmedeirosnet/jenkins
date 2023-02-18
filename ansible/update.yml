@@ -1,0 +1,17 @@
+---
+- name: Update
+  hosts: laboratory
+  become: true
+
+  tasks:
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+
+  - name: Upgrade packages
+    apt:
+      upgrade: dist
+
+  - name: Clean up apt cache
+    apt:
+      autoclean: yes

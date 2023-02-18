@@ -1,0 +1,25 @@
+---
+- name: Install and configure NGINX
+  hosts: laboratory
+  become: true
+
+  tasks:
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: present
+
+    - name: Create index.html
+      copy:
+        content: "<html><body><h1>Hello, world!</h1></body></html>"
+        dest: /var/www/html/index.html
+
+    - name: Enable NGINX at boot
+      systemd:
+        name: nginx
+        enabled: yes
+
+    - name: Start NGINX
+      systemd:
+        name: nginx
+        state: started
