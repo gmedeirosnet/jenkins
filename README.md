@@ -1,2 +1,2 @@
 # jenkyns
-Jenkyns hosted in AWS EC2 configuriing it with Terraform and Ansible
+Jenkins hosted in AWS EC2 configuriing it with Terraform and Ansible
