@@ -3,7 +3,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "laboratory_vpc"
+    Name = "jenkins_vpc"
   }
 }
 
@@ -12,58 +12,58 @@ resource "aws_subnet" "subnet" {
   cidr_block = "10.0.0.0/24"
 
   tags = {
-    Name = "laboratory_subnet"
+    Name = "jenkins_subnet"
   }
 }
 
-resource "aws_internet_gateway" "laboratory_igw" {
+resource "aws_internet_gateway" "jenkins_igw" {
   vpc_id = aws_vpc.vpc.id
 
     tags = {
-    Name = "laboratory_igw"
+    Name = "jenkins_igw"
   }
 }
 
-resource "aws_route_table" "laboratory_route_table" {
+resource "aws_route_table" "jenkins_route_table" {
   vpc_id = aws_vpc.vpc.id
 
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.laboratory_igw.id
+    gateway_id = aws_internet_gateway.jenkins_igw.id
   }
 
     tags = {
-    Name = "laboratory_route-table"
+    Name = "jenkins_route-table"
   }
 }
 
 resource "aws_route" "route" {
-  route_table_id            = aws_route_table.laboratory_route_table.id
+  route_table_id            = aws_route_table.jenkins_route_table.id
   destination_cidr_block    = "0.0.0.0/0"
-  gateway_id = aws_internet_gateway.laboratory_igw.id
+  gateway_id = aws_internet_gateway.jenkins_igw.id
 }
 
-resource "aws_route_table_association" "laboratory_subnet" {
+resource "aws_route_table_association" "jenkins_subnet" {
   subnet_id = aws_subnet.subnet.id
-  route_table_id = aws_route_table.laboratory_route_table.id
+  route_table_id = aws_route_table.jenkins_route_table.id
 }
 
 resource "aws_network_interface" "eni" {
   private_ips = ["10.0.0.50"]
   subnet_id   = aws_subnet.subnet.id
-  security_groups = [aws_security_group.laboratory_sg.id]
+  security_groups = [aws_security_group.jenkins_sg.id]
 
       tags = {
-    Name = "laboratory_eni"
+    Name = "jenkins_eni"
   }
 }
 
 resource "aws_eip" "lb" {
-  instance = aws_instance.laboratory.id
+  instance = aws_instance.jenkins.id
   vpc      = true
 
     tags = {
-    Name = "laboratory_eip"
+    Name = "jenkins_eip"
   }
 }

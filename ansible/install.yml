@@ -1,0 +1,8 @@
+---
+- name: Run Script to Install and configure Jenkins
+  hosts: jenkins
+  become: true
+
+  tasks:
+    - name: Add Jenkins repository
+      script: scripts/jenkins.sh
