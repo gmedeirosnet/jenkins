@@ -1,4 +1,18 @@
 ---
+- name: Change KNOW_HOSTS
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Remove
+      local_action: command ssh-keygen -f "~/.ssh/known_hosts" -R "jenkins.gmedeiros.net"
+      register: result
+
+    - name: Display the result
+      debug:
+        var: result.stdout
+
 - name: Update
   hosts: jenkins
   become: true
