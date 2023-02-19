@@ -59,7 +59,7 @@ resource "aws_network_interface" "eni" {
   }
 }
 
-resource "aws_eip" "lb" {
+resource "aws_eip" "eip" {
   instance = aws_instance.jenkins.id
   vpc      = true
 
