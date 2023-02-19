@@ -40,6 +40,9 @@ resource "aws_instance" "jenkins" {
 }
 
   resource "aws_route53_record" "jenkins" {
+  depends_on = [
+    aws_instance.jenkins
+  ]
   zone_id = "ZJBMBQ4H64DAE"
   name = "jenkins.gmedeiros.net"
   type = "CNAME"
