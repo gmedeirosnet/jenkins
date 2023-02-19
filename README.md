@@ -1,2 +1,3 @@
-# jenkyns
-Jenkins hosted in AWS EC2 configuriing it with Terraform and Ansible
+jenkyns
+
+Installing Jenkins hosted in asn simple AWS EC2 instance with Terraform and customized it with actions using Ansible.
