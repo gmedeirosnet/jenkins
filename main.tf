@@ -17,7 +17,7 @@ variable availability_zone_01 {
 
 resource "aws_key_pair" "jenkins_key" {
   key_name   = "jenkins"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCDk9fIBraD7ERZZDO+2Ja1wYd4GnH8ixZTpYboblE+/x4FZK7ZlRgQbORfGenthY/Eth10hYwaTaqEBIGt3387HjObu5EtaFIIG8N2qr12VOPZPr1DdCGkJlndFgZDERWxJlveilOx7bFgyQjVJ8UM80bQMsal8uWnIPruBuSyqfqwkXCXBeO2sw4e0MEwYcK8RimoQqEO8sRh94Y0BzzJe67jXOtljqHBJm0BgpCKDaU/oFWlHT/VSvjkA/2uNohtF22xmMLDtASsxEbmJ6q9BlEtjsv4dCQD1DHn54/uwfBZ+8n/PmUJ3BeMqJ3Rd9HktalySrgn5MfqmjtfdAhT imported-openssh-key"
+  public_key = ""
   }
 
 resource "aws_instance" "jenkins" {
